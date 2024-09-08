@@ -1,2 +1,2 @@
 # DNS-Changer
-A Simple command-line program to change the dns server of OS
+A Simple CLI program to change the DNS server in Windows OS
