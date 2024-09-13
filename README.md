@@ -39,6 +39,9 @@ Then, type the DNS provider name (or part of it) when prompted, and the script w
 
 ### Using the .bat File
 
+First, replace `{PLACE YOUR DIRECTORY HERE}` in `dns.bat` with the absolute path of the `dns.py` file, then try running the batch file.
+\
+\
 For easier usage, you can add the provided `.bat` file to your system's environment variables. This allows you to call the program directly from the command line using the command `dns`:
 
 ```bash
