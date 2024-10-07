@@ -1,6 +1,6 @@
 # DNS Changer
 
-This repository contains a Python script that allows users to automatically change their OS's DNS server to one of several well-known providers. It simplifies the process of switching between different DNS servers, making it easier to enhance security, privacy, or improve internet performance.
+This repository contains a Python script that allows users to automatically change their DNS server to one of several well-known providers in Windows OS. It simplifies the process of switching between different DNS servers, making it easier to enhance security, privacy, or improve internet performance.
 
 ## Supported DNS Providers
 
