@@ -12,6 +12,7 @@ if %errorLevel% == 0 (
 
 :main
 :: Run the Python script
-:: Add the directory into the environment variables 
-python C:\Users\mehra\Documents\Projects\DNS\dns.py %*
+:: Add the directory into the environment variables
+cd /d "%~dp0"
+python dns.py %*
 pause
