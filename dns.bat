@@ -13,5 +13,5 @@ if %errorLevel% == 0 (
 :main
 :: Run the Python script
 :: Add the directory into the environment variables 
-python {PLACE YOUR DIRECTORY HERE} %*
+python C:\Users\mehra\Documents\Projects\DNS\dns.py %*
 pause

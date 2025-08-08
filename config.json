@@ -1,0 +1,125 @@
+{
+  "dns_servers": [
+    {
+      "name": "Cloudflare",
+      "primary_dns": "1.1.1.1",
+      "secondary_dns": "1.0.0.1",
+      "description": "Cloudflare DNS Server known for speed and privacy",
+      "origin": "global"
+    },
+    {
+      "name": "Google",
+      "primary_dns": "8.8.8.8",
+      "secondary_dns": "8.8.4.4",
+      "description": "Google Public DNS with global reach and reliability",
+      "origin": "global"
+    },
+    {
+      "name": "Shecan",
+      "primary_dns": "178.22.122.100",
+      "secondary_dns": "185.51.200.2",
+      "description": "Shecan DNS to bypass restrictions, popular in Iran",
+      "origin": "IR"
+    },
+    {
+      "name": "403",
+      "primary_dns": "10.202.10.202",
+      "secondary_dns": "10.202.10.102",
+      "description": "403 DNS to bypass the restrictions on sanctioned websites",
+      "origin": "IR"
+    },
+    {
+      "name": "Electro",
+      "primary_dns": "78.157.42.100",
+      "secondary_dns": "78.157.42.101",
+      "description": "Electro DNS used for gaming with low latency",
+      "origin": "IR"
+    },
+    {
+      "name": "Radar",
+      "primary_dns": "10.202.10.10",
+      "secondary_dns": "10.202.10.11",
+      "description": "Radar DNS to bypass the restrictions and gaming with low latency",
+      "origin": "IR"
+    },
+    {
+      "name": "Begzar",
+      "primary_dns": "185.55.226.26",
+      "secondary_dns": "185.55.225.25",
+      "description": "Begzar DNS to bypass the restrictions and gaming with low latency",
+      "origin": "IR"
+    },
+        {
+      "name": "Quad9",
+      "primary_dns": "9.9.9.9",
+      "secondary_dns": "149.112.112.112",
+      "description": "Quad9 DNS with strong security features and privacy focus",
+      "origin": "global"
+    },
+    {
+      "name": "UltraDNS",
+      "primary_dns": "156.154.70.1",
+      "secondary_dns": "156.154.71.1",
+      "description": "UltraDNS by Neustar, offering enterprise-grade DNS services",
+      "origin": "global"
+    },
+    {
+      "name": "Level3",
+      "primary_dns": "209.244.0.3",
+      "secondary_dns": "209.244.0.4",
+      "description": "Level3 DNS, formerly major backbone provider, now part of CenturyLink",
+      "origin": "global"
+    },
+    {
+      "name": "Opendns",
+      "primary_dns": "208.67.222.222",
+      "secondary_dns": "208.67.220.220",
+      "description": "OpenDNS by Cisco, known for custom filtering and security",
+      "origin": "global"
+    },
+
+    {
+      "name": "NTT",
+      "primary_dns": "129.250.35.250",
+      "secondary_dns": "129.250.35.251",
+      "description": "NTT DNS optimized for fast downloads, especially for Iranian users",
+      "origin": "global"
+    },
+    {
+      "name": "Xbox",
+      "primary_dns": "37.220.84.124",
+      "secondary_dns": null,
+      "description": "Xbox-compatible DNS for improved gaming performance in Iran",
+      "origin": "IR"
+    },
+    {
+      "name": "IR-MCI",
+      "primary_dns": "208.67.222.222",
+      "secondary_dns": "208.67.220.220",
+      "description": "Compatible DNS for IR-MCI Sim-Card Operator",
+      "origin": "IR"
+    },
+    {
+      "name": "Irancell",
+      "primary_dns": "74.82.42.42",
+      "secondary_dns": null,
+      "description": "Compatible DNS for Irancell Sim-Card Operator",
+      "origin": "IR"
+    },
+    {
+      "name": "RighTel",
+      "primary_dns": "91.239.100.100",
+      "secondary_dns": "89.223.43.71",
+      "description": "Compatible DNS for RighTel Sim-Card Operator",
+      "origin": "IR"
+    },
+
+    {
+      "name": "Auto",
+      "primary_dns": "DHCP",
+      "secondary_dns": "DHCP",
+      "description": "Automatic DNS assignment via DHCP",
+      "origin": "system"
+    }
+  ]
+}

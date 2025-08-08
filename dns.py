@@ -1,69 +1,131 @@
 import sys
+import json
 import subprocess
+import time
 
-
-def set_dns(servers):
-    interface = "Wi-Fi"  # Change to your specific network interface name if different
-    if servers == "dhcp":
-        command = f'netsh interface ip set dns "{interface}" dhcp'
-        subprocess.run(command, shell=True)
-    else:
-        primary_dns = servers[0]
-        secondary_dns = servers[1] if len(servers) > 1 else ""
-        command = f'netsh interface ip set dns "{interface}" static {primary_dns}'
-        subprocess.run(command, shell=True)
-        if secondary_dns:
-            command = (
-                f'netsh interface ip add dns "{interface}" {secondary_dns} index=2'
-            )
-            subprocess.run(command, shell=True)
-
-    print("DNS settings updated successfully.")
-    show_dns(interface)
-
-
-def show_dns(interface):
-    command = f'netsh interface ip show dns "{interface}"'
-    result = subprocess.run(command, shell=True, capture_output=True, text=True)
-    print(result.stdout)
+from utils import *
 
 
 def main():
-    dns_options = {
-        "cloudflare": ["1.1.1.1", "1.0.0.1"],
-        "google": ["8.8.8.8", "8.8.4.4"],
-        "shecan": ["178.22.122.100", "185.51.200.2"],
-        "403": ["10.202.10.202", "10.202.10.102"],
-        "electro": ["78.157.42.100", "78.157.42.101"],
-        "radar": ["10.202.10.10", "10.202.10.11"],
-        "auto": "dhcp",
-    }
+    with open("C:\\Users\\mehra\\Documents\\Projects\\DNS\\config.json", "r") as file:
+        data = json.load(file)
+
+    dns_options = data["dns_servers"]
 
     if len(sys.argv) > 1:
-        arg = sys.argv[1].lower()
-        for key in dns_options.keys():
-            if key.startswith(arg):
-                set_dns(dns_options[key])
-                return
-        print("Invalid argument. Please provide a valid DNS option.")
-    else:
-        print("Please choose an option from the following:")
-        for key in dns_options.keys():
-            print(f"  {key}")
-        print("Or type 'manual' to enter DNS settings manually.")
+        # with argument
+        dns_argument = sys.argv[1].lower()
 
-        choice = input("Enter your choice: ").lower()
+        matched_dns_servers = [
+            dns_server
+            for dns_server in dns_options
+            if dns_server["name"].lower().startswith(dns_argument)
+        ]
+
+        selected = None
+
+        if len(matched_dns_servers) < 1:
+            print(
+                "\n⚠️ Invalid argument. Please run the program again and choose a valid DNS name."
+            )
+            return
+
+        elif len(matched_dns_servers) > 1:
+            print(f'\n📡 Available DNS Servers starting with "{dns_argument}":\n')
+            for i, server in enumerate(matched_dns_servers):
+                print_dns(server, index=i + 1)
+
+            chosen = input(
+                "\n👉 Enter the number of DNS Server you'd like to use: "
+            ).strip()
+
+            # Match and display selected server details
+            idx = int(chosen) - 1
+            if len(matched_dns_servers) > idx >= 0:
+                selected = matched_dns_servers[idx]
+
+        else:
+            selected = matched_dns_servers[0]
+
+        # Setting the DNS Server
+        if selected:
+            print("\n✅ You selected:")
+            print(f"🔹 Name       : {selected['name']}")
+            print(f"🔸 Primary DNS: {selected['primary_dns']}")
+            print(f"🔸 Secondary DNS: {selected['secondary_dns']}")
+
+            set_dns([selected["primary_dns"], selected["secondary_dns"]])
+        else:
+            print(
+                "\n⚠️ Invalid selection. Please run the program again and choose a valid DNS name."
+            )
+            return
+
+    else:
+        # without argument
+        print("\n📡 Available DNS Servers:\n")
+        time.sleep(1)
+        for server in data["dns_servers"]:
+            print_dns(server)
+            time.sleep(0.1)
+
+        print("\n👉 Enter the name of the DNS server you'd like to use ")
+        print("Or type 'manual' to enter DNS settings manually: ", end="")
+
+        choice = input("").lower()
+
+        # Manual Entry
         if "manual".startswith(choice):
             primary_dns = input("Enter primary DNS server: ")
             secondary_dns = input("Enter secondary DNS server (leave blank if none): ")
             set_dns([primary_dns, secondary_dns])
+
+        # Matching the dns server name
         else:
-            for key in dns_options.keys():
-                if key.startswith(choice):
-                    set_dns(dns_options[key])
-                    return
+            matched_dns_servers = [
+                dns_server
+                for dns_server in dns_options
+                if dns_server["name"].lower().startswith(choice)
+            ]
+
+            selected = None
+
+            if len(matched_dns_servers) < 1:
+                print(
+                    "\n⚠️ Invalid selection. Please run the program again and choose a valid DNS name."
+                )
+                return
+
+            elif len(matched_dns_servers) > 1:
+                print(f'📡 Available DNS Servers starting with "{choice}":\n')
+                for i, server in enumerate(matched_dns_servers):
+                    print_dns(server, index=i + 1)
+
+                chosen = input(
+                    "\n👉 Enter the number of DNS Server you'd like to use: "
+                ).strip()
+
+                # Match and display selected server details
+                idx = int(chosen) - 1
+                if len(matched_dns_servers) > idx >= 0:
+                    selected = matched_dns_servers[idx]
+
             else:
-                print("Invalid choice. Exiting.")
+                selected = matched_dns_servers[0]
+
+            # Setting the DNS Server
+            if selected:
+                print("\n✅ You selected:")
+                print(f"🔹 Name       : {selected['name']}")
+                print(f"🔸 Primary DNS: {selected['primary_dns']}")
+                print(f"🔸 Secondary DNS: {selected['secondary_dns']}")
+
+                set_dns([selected["primary_dns"], selected["secondary_dns"]])
+            else:
+                print(
+                    "\n⚠️ Invalid selection. Please run the program again and choose a valid DNS name."
+                )
+                return
 
 
 if __name__ == "__main__":
