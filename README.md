@@ -9,15 +9,25 @@ The script supports the following DNS providers:
 - **Cloudflare**
 - **Google**
 - **Shecan**
+- **403**
 - **Electro**
 - **Radar**
-- **403**
+- **Begzar**
+- **Quad9**
+- **UltraDNS**
+- **Level3**
+- **Opendns**
+- **NTT**
+- **Xbox**
+- **IR-MCI**
+- **Irancell**
+- **RighTel**
 - **Automatic (DHCP assigned DNS Server)**
 
 ## How to Use
 
 ### Direct Python Execution
-You can directly run the Python script using:
+You can directly run the Python script with admin permusing:
 
 ```bash
 python dns.py <dns_provider>
@@ -36,6 +46,8 @@ python dns.py
 ```
 
 Then, type the DNS provider name (or part of it) when prompted, and the script will match it to the closest provider.
+
+⚠️ **Important:** Make sure to run this code with **administrator privileges** to ensure proper execution.
 
 ### Using the .bat File
 
@@ -78,7 +90,8 @@ And the code will automatically match the entered name
    cd dns-changer
    ```
 
-2. Add the `.bat` file to your environment variables for easy access (optional).
+2. Run the `dns.py` or `dns.bat` file with **administrator privileges**.
+3. Add the `.bat` file to your environment variables for easy access (optional).
    
 ## License
 
